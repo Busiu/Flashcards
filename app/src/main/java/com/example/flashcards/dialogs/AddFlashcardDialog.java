@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -12,6 +12,9 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.example.flashcards.model.Flashcard;
+import com.example.flashcards.R;
 
 import java.util.ArrayList;
 

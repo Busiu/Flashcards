@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.flashcards.dialogs.AddCategoryDialog;
+import com.example.flashcards.dialogs.AddFlashcardDialog;
+import com.example.flashcards.model.Flashcard;
+import com.example.flashcards.utils.NoDuplicateArrayList;
+import com.example.flashcards.R;
 
 import java.util.ArrayList;
 

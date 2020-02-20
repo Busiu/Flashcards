@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.example.flashcards.R;
 
 public class AddCategoryDialog extends AppCompatDialogFragment {
 
@@ -30,7 +32,7 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
         editTextCategoryName = view.findViewById(R.id.edit_text_category_name);
 
         builder.setView(view)
-                .setTitle("Dodaj kategorie")
+                .setTitle("Dodaj kategorię")
                 .setNegativeButton("anuluj", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

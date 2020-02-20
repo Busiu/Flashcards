@@ -26,7 +26,7 @@
         android:layout_below="@id/button_unknown_flashcards"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:text="dodaj fiszke" />
+        android:text="dodaj fiszkę" />
 
     <Button
         android:id="@+id/button_add_category"
@@ -34,6 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/button_add_flashcard"
         android:layout_centerHorizontal="true"
-        android:text="dodaj kategorie" />
+        android:text="dodaj kategorię" />
 
 </RelativeLayout>

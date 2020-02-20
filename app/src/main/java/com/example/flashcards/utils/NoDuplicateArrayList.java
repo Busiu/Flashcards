@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
