@@ -2,7 +2,6 @@ package com.example.flashcards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +13,8 @@ import com.example.flashcards.dialogs.AddFlashcardDialog;
 import com.example.flashcards.model.Compartment;
 import com.example.flashcards.model.CompartmentType;
 import com.example.flashcards.model.Flashcard;
-import com.example.flashcards.utils.NoDuplicateArrayList;
 import com.example.flashcards.R;
+import com.example.flashcards.utils.ChosenObjects;
 
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements
         buttonKnownFlashcards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openChooseCategoryActivity(CompartmentType.KNOWN);
+                openCategoryListActivity(CompartmentType.KNOWN);
             }
         });
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements
         buttonUnknownFlashcards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openChooseCategoryActivity(CompartmentType.UNKNOWN);
+                openCategoryListActivity(CompartmentType.UNKNOWN);
             }
         });
     }
@@ -86,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements
         addFlashcardDialog.show(getSupportFragmentManager(), "Adding flashcard");
     }
 
-    private void openChooseCategoryActivity(CompartmentType type) {
-        Intent intent = new Intent(this, ChooseCategoryActivity.class);
-        intent.putExtra("type", type);
+    private void openCategoryListActivity(CompartmentType type) {
+        ChosenObjects.currentlyChosenCompartmentType = type;
+        Intent intent = new Intent(this, CategoryListActivity.class);
         startActivity(intent);
     }
 

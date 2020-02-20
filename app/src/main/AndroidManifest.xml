@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ChooseCategoryActivity" />
+        <activity android:name=".activities.CategoryListActivity" />
+        <activity android:name=".activities.FlashcardGameActivity" />
+        <activity android:name=".activities.FlashcardListActivity" />
     </application>
 
 </manifest>
