@@ -11,15 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.flashcards.R;
+import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.utils.NoDuplicateArrayList;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CategoryAdapter extends ArrayAdapter<String> {
 
     private NoDuplicateArrayList<String> categories;
+    private HashMap<String, ArrayList<Flashcard>> flashcards;
 
-    public CategoryAdapter(Context context, int layoutResourceId, NoDuplicateArrayList<String> categories) {
+    public CategoryAdapter(Context context, int layoutResourceId, NoDuplicateArrayList<String> categories, HashMap<String, ArrayList<Flashcard>> flashcards) {
         super(context, layoutResourceId, categories.getArrayList());
         this.categories = categories;
+        this.flashcards = flashcards;
     }
 
     private class ViewHolder {
@@ -46,7 +52,7 @@ public class CategoryAdapter extends ArrayAdapter<String> {
 
         String category = categories.get(position);
         viewHolder.textViewCategoryName.setText(category);
-        viewHolder.textViewNoFlashcards.setText("10");
+        viewHolder.textViewNoFlashcards.setText(Integer.toString(flashcards.get(category).size()));
 
         return convertView;
     }

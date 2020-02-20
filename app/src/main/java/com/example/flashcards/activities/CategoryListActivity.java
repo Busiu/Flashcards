@@ -37,7 +37,7 @@ public class CategoryListActivity extends AppCompatActivity {
         chooseFlashcards();
 
         listViewCategories = findViewById(R.id.list_view_object);
-        categoryAdapter = new CategoryAdapter(this, R.layout.list_view_category, Compartment.categories);
+        categoryAdapter = new CategoryAdapter(this, R.layout.list_view_category, Compartment.categories, flashcards);
         listViewCategories.setAdapter(categoryAdapter);
         listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

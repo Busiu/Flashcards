@@ -15,8 +15,7 @@ import com.example.flashcards.utils.ChosenObjects;
 
 import java.util.ArrayList;
 
-public class FlashcardListActivity extends AppCompatActivity implements
-        SimpleDeleteDialog.SimpleDeleteDialogListener {
+public class FlashcardListActivity extends AppCompatActivity {
 
     private ListView listViewFlashcards;
     private FlashcardAdapter flashcardAdapter;
@@ -49,6 +48,7 @@ public class FlashcardListActivity extends AppCompatActivity implements
         }
     }
 
+    /*
     public void openSimpleDeleteDialog(Flashcard flashcard) {
         simpleDeleteDialog = new SimpleDeleteDialog(this, flashcard);
         simpleDeleteDialog.show(getSupportFragmentManager(), "Open Simple Delete Dialog");
@@ -56,6 +56,7 @@ public class FlashcardListActivity extends AppCompatActivity implements
 
     @Override
     public void simpleDelete(Object object) {
-        flashcardAdapter.remove((Flashcard) object);
+        flashcardAdapter.delete((Flashcard) object);
     }
+    */
 }
