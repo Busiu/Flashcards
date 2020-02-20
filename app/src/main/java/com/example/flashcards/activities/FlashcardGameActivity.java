@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class FlashcardGameActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 }

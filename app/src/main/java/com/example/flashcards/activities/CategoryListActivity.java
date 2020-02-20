@@ -32,12 +32,12 @@ public class CategoryListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_list);
+        setContentView(R.layout.activity_list_view);
         categories = Compartment.categories;
         chooseFlashcards();
 
-        listViewCategories = findViewById(R.id.list_view_categories);
-        categoryAdapter = new CategoryAdapter(this, R.layout.list_view_choose_category, Compartment.categories);
+        listViewCategories = findViewById(R.id.list_view_object);
+        categoryAdapter = new CategoryAdapter(this, R.layout.list_view_category, Compartment.categories);
         listViewCategories.setAdapter(categoryAdapter);
         listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

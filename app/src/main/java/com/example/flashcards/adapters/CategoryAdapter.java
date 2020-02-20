@@ -34,7 +34,7 @@ public class CategoryAdapter extends ArrayAdapter<String> {
 
         if(convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            convertView = layoutInflater.inflate(R.layout.list_view_choose_category, parent, false);
+            convertView = layoutInflater.inflate(R.layout.list_view_category, parent, false);
 
             viewHolder.textViewCategoryName = convertView.findViewById(R.id.text_view_category_name);
             viewHolder.textViewNoFlashcards = convertView.findViewById(R.id.text_view_no_flashcards);
