@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -40,7 +41,12 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String categoryName = editTextCategoryName.getText().toString();
-                        listener.addCategory(categoryName);
+                        if (categoryName.equals("")) {
+                            Toast.makeText(getContext(), "Kategoria nie może być pusta!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            listener.addCategory(categoryName);
+                        }
                     }
                 });
 
