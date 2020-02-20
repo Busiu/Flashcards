@@ -2,11 +2,11 @@ package com.example.flashcards.model;
 
 public class Flashcard {
 
+    private Phrase englishPhrase;
+    private Phrase polishPhrase;
     private String category;
-    private String englishPhrase;
-    private String polishPhrase;
 
-    public Flashcard(String category, String englishPhrase, String polishPhrase) {
+    public Flashcard(Phrase englishPhrase, Phrase polishPhrase, String category) {
         this.category = category;
         this.englishPhrase = englishPhrase;
         this.polishPhrase = polishPhrase;
@@ -16,11 +16,11 @@ public class Flashcard {
         return category;
     }
 
-    public String getEnglishPhrase() {
+    public Phrase getEnglishPhrase() {
         return englishPhrase;
     }
 
-    public String getPolishPhrase() {
+    public Phrase getPolishPhrase() {
         return polishPhrase;
     }
 }

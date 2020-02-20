@@ -43,7 +43,7 @@ public class FlashcardGameOptionsDialog extends AppCompatDialogFragment {
         });
 
         builder.setView(view)
-                .setTitle("Wybierz tryb nauki");
+                .setTitle("Wybierz tryb nauki:");
 
         return builder.create();
     }

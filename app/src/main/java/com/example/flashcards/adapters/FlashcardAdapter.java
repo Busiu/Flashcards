@@ -57,8 +57,8 @@ public class FlashcardAdapter extends ArrayAdapter<Flashcard> {
                 notifyDataSetChanged();
             }
         });
-        viewHolder.textViewEnglishPhrase.setText(flashcard.getEnglishPhrase());
-        viewHolder.textViewPolishPhrase.setText(flashcard.getPolishPhrase());
+        viewHolder.textViewEnglishPhrase.setText(flashcard.getEnglishPhrase().toString());
+        viewHolder.textViewPolishPhrase.setText(flashcard.getPolishPhrase().toString());
 
         return convertView;
     }

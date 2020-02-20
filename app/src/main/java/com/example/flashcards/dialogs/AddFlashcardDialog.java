@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.R;
+import com.example.flashcards.model.Language;
+import com.example.flashcards.model.Phrase;
 
 import java.util.ArrayList;
 
@@ -74,7 +76,10 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String englishPhrase = editTextEnglishPhrase.getText().toString();
                         String polishPhrase = editTextPolishPhrase.getText().toString();
-                        listener.addFlashcard(new Flashcard(chosenCategory, englishPhrase, polishPhrase));
+                        listener.addFlashcard(new Flashcard(
+                                new Phrase(Language.ENGLISH, englishPhrase),
+                                new Phrase(Language.POLISH, polishPhrase),
+                                chosenCategory));
                     }
                 });
 

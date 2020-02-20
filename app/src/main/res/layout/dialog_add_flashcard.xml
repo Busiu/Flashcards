@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_category"
-        android:hint="angielskie wyrażenie" />
+        android:hint="Angielskie wyrażenie" />
 
     <EditText
         android:id="@+id/edit_text_polish_phrase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_text_english_phrase"
-        android:hint="polskie wyrażenie" />
+        android:hint="Polskie wyrażenie" />
 
 </RelativeLayout>
