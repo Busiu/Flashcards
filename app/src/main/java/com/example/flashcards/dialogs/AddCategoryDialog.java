@@ -32,7 +32,7 @@ public class AddCategoryDialog extends AppCompatDialogFragment {
         editTextCategoryName = view.findViewById(R.id.edit_text_category_name);
 
         builder.setView(view)
-                .setTitle("Dodaj kategorię")
+                .setTitle("Dodaj kategorię:")
                 .setNegativeButton("anuluj", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

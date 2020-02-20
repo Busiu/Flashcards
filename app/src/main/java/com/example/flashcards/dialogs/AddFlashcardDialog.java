@@ -64,7 +64,7 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
         });
 
         builder.setView(view)
-                .setTitle("Dodaj fiszkę")
+                .setTitle("Dodaj fiszkę:")
                 .setNegativeButton("anuluj", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
