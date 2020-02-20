@@ -2,6 +2,7 @@ package com.example.flashcards.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Compartment.init();
+        Compartment.load(this);
 
         buttonAddCategory = findViewById(R.id.button_add_category);
         buttonAddCategory.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +68,12 @@ public class MainActivity extends AppCompatActivity implements
                 openChooseCategoryActivity(CompartmentType.UNKNOWN);
             }
         });
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Compartment.save(this);
     }
 
     private void openAddCategoryDialog() {
