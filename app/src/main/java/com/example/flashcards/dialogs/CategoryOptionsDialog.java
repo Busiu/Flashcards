@@ -17,6 +17,7 @@ public class CategoryOptionsDialog extends AppCompatDialogFragment {
 
     private Button buttonShowFlashcards;
     private Button buttonPlay;
+    private FlashcardGameOptionsDialog flashcardGameOptionsDialog;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class CategoryOptionsDialog extends AppCompatDialogFragment {
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO
+                openFlashcardGameOptionsDialog();
             }
         });
 
@@ -46,9 +47,19 @@ public class CategoryOptionsDialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        dismiss();
+    }
+
+    private void openFlashcardGameOptionsDialog() {
+        flashcardGameOptionsDialog = new FlashcardGameOptionsDialog();
+        flashcardGameOptionsDialog.show(getChildFragmentManager(), "Flashcard Game Options");
+    }
+
     private void openFlashcardListActivity() {
         Intent intent = new Intent(getContext(), FlashcardListActivity.class);
         startActivity(intent);
-        dismiss();
     }
 }
