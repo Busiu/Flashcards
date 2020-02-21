@@ -15,7 +15,8 @@ import com.example.flashcards.utils.ChosenObjects;
 
 import java.util.ArrayList;
 
-public class FlashcardListActivity extends AppCompatActivity {
+public class FlashcardListActivity extends AppCompatActivity implements
+        SimpleDeleteDialog.SimpleDeleteDialogListener {
 
     private ListView listViewFlashcards;
     private FlashcardAdapter flashcardAdapter;
@@ -40,6 +41,12 @@ public class FlashcardListActivity extends AppCompatActivity {
         listViewFlashcards.setAdapter(flashcardAdapter);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Compartment.save(this);
+    }
+
     private void chooseFlashcards() {
         if (chosenCompartmentType == CompartmentType.KNOWN) {
             flashcards = Compartment.knownFlashcards.get(chosenCategory);
@@ -48,7 +55,6 @@ public class FlashcardListActivity extends AppCompatActivity {
         }
     }
 
-    /*
     public void openSimpleDeleteDialog(Flashcard flashcard) {
         simpleDeleteDialog = new SimpleDeleteDialog(this, flashcard);
         simpleDeleteDialog.show(getSupportFragmentManager(), "Open Simple Delete Dialog");
@@ -58,5 +64,5 @@ public class FlashcardListActivity extends AppCompatActivity {
     public void simpleDelete(Object object) {
         flashcardAdapter.delete((Flashcard) object);
     }
-    */
+
 }

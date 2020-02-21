@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.flashcards.R;
 import com.example.flashcards.activities.FlashcardListActivity;
+import com.example.flashcards.model.Compartment;
+import com.example.flashcards.model.CompartmentType;
+import com.example.flashcards.utils.ChosenObjects;
 
 public class CategoryOptionsDialog extends AppCompatDialogFragment {
 
@@ -33,13 +36,16 @@ public class CategoryOptionsDialog extends AppCompatDialogFragment {
             }
         });
 
-        buttonPlay = view.findViewById(R.id.button_play);
-        buttonPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFlashcardGameOptionsDialog();
-            }
-        });
+        if (ChosenObjects.currentlyChosenCompartmentType == CompartmentType.UNKNOWN) {
+            System.out.println("XDDDDDDDDDDDDDDD");
+            buttonPlay = view.findViewById(R.id.button_play);
+            buttonPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openFlashcardGameOptionsDialog();
+                }
+            });
+        }
 
         builder.setView(view)
                 .setTitle("Co chcesz zrobić?");

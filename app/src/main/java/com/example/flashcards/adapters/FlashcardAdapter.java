@@ -52,25 +52,21 @@ public class FlashcardAdapter extends ArrayAdapter<Flashcard> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Flashcard flashcard = flashcards.get(position);
-        /*
+        final Flashcard flashcard = flashcards.get(position);
         viewHolder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.openSimpleDeleteDialog(flashcard);
             }
         });
-         */
         viewHolder.textViewEnglishPhrase.setText(flashcard.getEnglishPhrase().toString());
         viewHolder.textViewPolishPhrase.setText(flashcard.getPolishPhrase().toString());
 
         return convertView;
     }
 
-    /*
     public void delete(Flashcard flashcard) {
         flashcards.remove(flashcard);
         notifyDataSetChanged();
     }
-    */
 }

@@ -19,6 +19,10 @@
         <activity android:name=".activities.CategoryListActivity" />
         <activity android:name=".activities.FlashcardGameActivity" />
         <activity android:name=".activities.FlashcardListActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -75,7 +75,12 @@ public class FlashcardGameActivity extends AppCompatActivity {
         textViewPhrase = findViewById(R.id.text_view_phrase);
 
         changeFlashcard();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Compartment.save(this);
     }
 
     private void changeFlashcard() {

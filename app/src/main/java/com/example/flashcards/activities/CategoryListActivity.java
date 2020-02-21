@@ -47,6 +47,18 @@ public class CategoryListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        categoryAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Compartment.save(this);
+    }
+
     private void chooseFlashcards() {
         CompartmentType type = ChosenObjects.currentlyChosenCompartmentType;
         if (type == CompartmentType.KNOWN) {
