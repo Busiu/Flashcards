@@ -27,6 +27,9 @@ public class FlashcardListActivity extends AppCompatActivity implements
     private String chosenCategory;
     private Level chosenLevel;
 
+    private static final String deleteDialogTitle = "Usuwanie fiszki:";
+    private static final String deleteDialogInfo = "Czy na pewno chcesz usunąć tę fiszkę?";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,11 @@ public class FlashcardListActivity extends AppCompatActivity implements
         chooseFlashcards();
 
         listViewFlashcards = findViewById(R.id.list_view_object);
-        flashcardAdapter = new FlashcardAdapter(this, R.layout.list_view_flashcard, flashcards, this);
+        flashcardAdapter = new FlashcardAdapter(
+                this,
+                R.layout.list_view_flashcard,
+                flashcards,
+                this);
         listViewFlashcards.setAdapter(flashcardAdapter);
     }
 
@@ -49,7 +56,7 @@ public class FlashcardListActivity extends AppCompatActivity implements
     }
 
     public void openSimpleDeleteDialog(Flashcard flashcard) {
-        simpleDeleteDialog = new SimpleDeleteDialog(this, flashcard);
+        simpleDeleteDialog = new SimpleDeleteDialog(this, flashcard, deleteDialogTitle, deleteDialogInfo);
         simpleDeleteDialog.show(getSupportFragmentManager(), "Open Simple Delete Dialog");
     }
 

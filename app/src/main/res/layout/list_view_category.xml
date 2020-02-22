@@ -10,12 +10,21 @@
         android:layout_height="wrap_content"
         android:text="kategoria" />
 
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/text_view_category_name"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="usuń"
+        android:textSize="8dp" />
+
     <TextView
         android:id="@+id/text_view_no_flashcards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_view_category_name"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/button_delete"
         android:text="liczba fiszek" />
 
 </RelativeLayout>

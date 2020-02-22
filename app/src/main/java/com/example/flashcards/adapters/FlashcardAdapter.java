@@ -22,7 +22,11 @@ public class FlashcardAdapter extends ArrayAdapter<Flashcard> {
     private FlashcardListActivity activity;
     private ArrayList<Flashcard> flashcards;
 
-    public FlashcardAdapter(Context context, int layoutResourceId, ArrayList<Flashcard> flashcards, FlashcardListActivity activity) {
+    public FlashcardAdapter(
+            Context context,
+            int layoutResourceId,
+            ArrayList<Flashcard> flashcards,
+            FlashcardListActivity activity) {
         super(context, layoutResourceId, flashcards);
         this.activity = activity;
         this.flashcards = flashcards;

@@ -69,6 +69,11 @@ public class Data {
         loadFlashcards();
     }
 
+    public static void removeCategory(String category) {
+        deleteCategory(category);
+        deleteFlashcardsOfCategory(category);
+    }
+
     public static void removeFlashcard(Flashcard flashcard) {
         String whereClause = FlashcardsEntry.COLUMN_ENGLISH_PHRASE + "=\"" +
                 flashcard.getEnglishPhrase() + "\" AND " +
@@ -97,6 +102,23 @@ public class Data {
         cv.put(FlashcardsEntry.COLUMN_POLISH_PHRASE, flashcard.getPolishPhrase().toString());
 
         database.update(FlashcardsEntry.TABLE_NAME, cv, whereClause, null);
+    }
+
+    private static void deleteCategory(String category) {
+        String whereClause = CategoriesEntry.COLUMN_NAME + "=\"" +
+                category + "\"";
+
+        database.delete(CategoriesEntry.TABLE_NAME, whereClause, null);
+        categories.remove(category);
+    }
+
+    private static void deleteFlashcardsOfCategory(String category) {
+        String whereClause = FlashcardsEntry.COLUMN_CATEGORY + "=\"" +
+                category + "\"";
+
+        database.delete(FlashcardsEntry.TABLE_NAME, whereClause, null);
+        knownFlashcards.remove(category);
+        unknownFlashcards.remove(category);
     }
 
     private static void initDatabase(Context context) {

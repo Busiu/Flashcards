@@ -15,12 +15,23 @@ import com.example.flashcards.R;
 public class SimpleDeleteDialog extends AppCompatDialogFragment {
 
     private TextView textViewInfo;
+
     private SimpleDeleteDialogListener listener;
+
     private Object chosenObject;
 
-    public SimpleDeleteDialog(SimpleDeleteDialogListener listener, Object chosenObject) {
+    private String title;
+    private String info;
+
+    public SimpleDeleteDialog(
+            SimpleDeleteDialogListener listener,
+            Object chosenObject,
+            String title,
+            String info) {
         this.listener = listener;
         this.chosenObject = chosenObject;
+        this.title = title;
+        this.info = info;
     }
 
     @Override
@@ -30,9 +41,10 @@ public class SimpleDeleteDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.dialog_simple_approval, null);
 
         textViewInfo = view.findViewById(R.id.text_view_info);
+        textViewInfo.setText(info);
 
         builder.setView(view)
-                .setTitle("Usuwanie fiszki")
+                .setTitle(title)
                 .setNegativeButton("anuluj", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
