@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="XdTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorPrimaryDark">#00FF00</item>
+        <item name="colorAccent">#0000FF</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="android:windowBackground">@color/colorPrincessDarkPink</item>
+    </style>
+
+    <style name="PatrycjaTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrincessDarkPink</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorPrincessLightPurple</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="android:windowBackground">@color/colorPrincessLightPink</item>
+        <item name="colorBackgroundFloating">@color/colorPrincessLightPink</item>
+    </style>
+
 </resources>
