@@ -9,12 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.flashcards.R;
 import com.example.flashcards.adapters.CategoryAdapter;
+import com.example.flashcards.database.Data;
 import com.example.flashcards.dialogs.CategoryOptionsDialog;
-import com.example.flashcards.model.Compartment;
-import com.example.flashcards.model.CompartmentType;
+import com.example.flashcards.model.Level;
 import com.example.flashcards.model.Flashcard;
-import com.example.flashcards.utils.ChosenObjects;
-import com.example.flashcards.utils.NoDuplicateArrayList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,17 +25,15 @@ public class CategoryListActivity extends AppCompatActivity {
     private CategoryOptionsDialog categoryOptionsDialog;
 
     private HashMap<String, ArrayList<Flashcard>> flashcards;
-    private NoDuplicateArrayList<String> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-        categories = Compartment.categories;
         chooseFlashcards();
 
         listViewCategories = findViewById(R.id.list_view_object);
-        categoryAdapter = new CategoryAdapter(this, R.layout.list_view_category, Compartment.categories, flashcards);
+        categoryAdapter = new CategoryAdapter(this, R.layout.list_view_category, Data.categories, flashcards);
         listViewCategories.setAdapter(categoryAdapter);
         listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -53,24 +49,18 @@ public class CategoryListActivity extends AppCompatActivity {
         categoryAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Compartment.save(this);
-    }
-
     private void chooseFlashcards() {
-        CompartmentType type = ChosenObjects.currentlyChosenCompartmentType;
-        if (type == CompartmentType.KNOWN) {
-            flashcards = Compartment.knownFlashcards;
+        Level type = Data.chosenLevel;
+        if (type == Level.KNOWN) {
+            flashcards = Data.knownFlashcards;
         }
         else {
-            flashcards = Compartment.unknownFlashcards;
+            flashcards = Data.unknownFlashcards;
         }
     }
 
     private void openCategoryOptionsDialog(int position) {
-        ChosenObjects.currentlyChosenCategory = categories.get(position);
+        Data.chosenCategory = Data.categories.get(position);
         categoryOptionsDialog = new CategoryOptionsDialog();
         categoryOptionsDialog.show(getSupportFragmentManager(), "Category List");
     }

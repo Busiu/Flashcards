@@ -8,13 +8,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.flashcards.R;
-import com.example.flashcards.model.Compartment;
-import com.example.flashcards.model.CompartmentType;
+import com.example.flashcards.database.Data;
+import com.example.flashcards.model.Level;
 import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.model.FlashcardGameType;
 import com.example.flashcards.model.Language;
 import com.example.flashcards.model.Phrase;
-import com.example.flashcards.utils.ChosenObjects;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +33,7 @@ public class FlashcardGameActivity extends AppCompatActivity {
     private int iteratorUnknownFlashcardsDeck;
     private int sizeUnknownFlashcardsDeck;
 
-    private CompartmentType chosenCompartmentType;
+    private Level chosenLevel;
     private FlashcardGameType chosenFlashcardGameType;
     private String chosenCategory;
 
@@ -60,6 +59,8 @@ public class FlashcardGameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 unknownFlashcardsDeck.remove(currentFlashcard);
                 knownFlashcardsDeck.add(currentFlashcard);
+                Data.switchLevelOfFlashcardToDatabase(currentFlashcard);
+
                 sizeUnknownFlashcardsDeck = unknownFlashcardsDeck.size();
                 changeFlashcard();
             }
@@ -75,12 +76,6 @@ public class FlashcardGameActivity extends AppCompatActivity {
         textViewPhrase = findViewById(R.id.text_view_phrase);
 
         changeFlashcard();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Compartment.save(this);
     }
 
     private void changeFlashcard() {
@@ -109,14 +104,14 @@ public class FlashcardGameActivity extends AppCompatActivity {
     }
 
     private void setChoice() {
-        chosenCompartmentType = ChosenObjects.currentlyChosenCompartmentType;
-        chosenFlashcardGameType = ChosenObjects.currentlyChosenFlashcardGameType;
-        chosenCategory = ChosenObjects.currentlyChosenCategory;
+        chosenLevel = Data.chosenLevel;
+        chosenFlashcardGameType = Data.chosenFlashcardGameType;
+        chosenCategory = Data.chosenCategory;
     }
 
     private void setDeck() {
-        knownFlashcardsDeck = Compartment.knownFlashcards.get(chosenCategory);
-        unknownFlashcardsDeck = Compartment.unknownFlashcards.get(chosenCategory);
+        knownFlashcardsDeck = Data.knownFlashcards.get(chosenCategory);
+        unknownFlashcardsDeck = Data.unknownFlashcards.get(chosenCategory);
         iteratorUnknownFlashcardsDeck = 0;
         sizeUnknownFlashcardsDeck = unknownFlashcardsDeck.size();
     }

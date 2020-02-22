@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.flashcards.R;
 import com.example.flashcards.activities.FlashcardGameActivity;
+import com.example.flashcards.database.Data;
 import com.example.flashcards.model.FlashcardGameType;
-import com.example.flashcards.utils.ChosenObjects;
 
 public class FlashcardGameOptionsDialog extends AppCompatDialogFragment {
 
@@ -49,7 +49,7 @@ public class FlashcardGameOptionsDialog extends AppCompatDialogFragment {
     }
 
     private void openFlashcardGameActivity(FlashcardGameType type) {
-        ChosenObjects.currentlyChosenFlashcardGameType = type;
+        Data.chosenFlashcardGameType = type;
 
         Intent intent = new Intent(getContext(), FlashcardGameActivity.class);
         startActivity(intent);

@@ -64,9 +64,4 @@ public class FlashcardAdapter extends ArrayAdapter<Flashcard> {
 
         return convertView;
     }
-
-    public void delete(Flashcard flashcard) {
-        flashcards.remove(flashcard);
-        notifyDataSetChanged();
-    }
 }

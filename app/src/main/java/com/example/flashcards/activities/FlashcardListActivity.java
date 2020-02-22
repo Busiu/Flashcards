@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.flashcards.R;
 import com.example.flashcards.adapters.FlashcardAdapter;
+import com.example.flashcards.database.Data;
 import com.example.flashcards.dialogs.SimpleDeleteDialog;
-import com.example.flashcards.model.Compartment;
-import com.example.flashcards.model.CompartmentType;
+import com.example.flashcards.model.Level;
 import com.example.flashcards.model.Flashcard;
-import com.example.flashcards.utils.ChosenObjects;
 
 import java.util.ArrayList;
 
@@ -26,14 +25,14 @@ public class FlashcardListActivity extends AppCompatActivity implements
     private ArrayList<Flashcard> flashcards;
 
     private String chosenCategory;
-    private CompartmentType chosenCompartmentType;
+    private Level chosenLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-        chosenCategory = ChosenObjects.currentlyChosenCategory;
-        chosenCompartmentType = ChosenObjects.currentlyChosenCompartmentType;
+        chosenCategory = Data.chosenCategory;
+        chosenLevel = Data.chosenLevel;
         chooseFlashcards();
 
         listViewFlashcards = findViewById(R.id.list_view_object);
@@ -41,17 +40,11 @@ public class FlashcardListActivity extends AppCompatActivity implements
         listViewFlashcards.setAdapter(flashcardAdapter);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Compartment.save(this);
-    }
-
     private void chooseFlashcards() {
-        if (chosenCompartmentType == CompartmentType.KNOWN) {
-            flashcards = Compartment.knownFlashcards.get(chosenCategory);
+        if (chosenLevel == Level.KNOWN) {
+            flashcards = Data.knownFlashcards.get(chosenCategory);
         } else {
-            flashcards = Compartment.unknownFlashcards.get(chosenCategory);
+            flashcards = Data.unknownFlashcards.get(chosenCategory);
         }
     }
 
@@ -62,7 +55,7 @@ public class FlashcardListActivity extends AppCompatActivity implements
 
     @Override
     public void simpleDelete(Object object) {
-        flashcardAdapter.delete((Flashcard) object);
+        Data.removeFlashcard((Flashcard) object);
+        flashcardAdapter.notifyDataSetChanged();
     }
-
 }

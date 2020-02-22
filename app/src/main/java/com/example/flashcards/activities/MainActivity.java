@@ -8,15 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.flashcards.database.Data;
 import com.example.flashcards.dialogs.AddCategoryDialog;
 import com.example.flashcards.dialogs.AddFlashcardDialog;
-import com.example.flashcards.model.Compartment;
-import com.example.flashcards.model.CompartmentType;
+import com.example.flashcards.model.Level;
 import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.R;
-import com.example.flashcards.utils.ChosenObjects;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements
         AddCategoryDialog.AddCategoryDialogListener,
@@ -34,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Compartment.load(this);
+        Data.init(this);
+        Data.load();
 
         buttonAddCategory = findViewById(R.id.button_add_category);
         buttonAddCategory.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements
         buttonKnownFlashcards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCategoryListActivity(CompartmentType.KNOWN);
+                openCategoryListActivity(Level.KNOWN);
             }
         });
 
@@ -64,15 +62,9 @@ public class MainActivity extends AppCompatActivity implements
         buttonUnknownFlashcards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCategoryListActivity(CompartmentType.UNKNOWN);
+                openCategoryListActivity(Level.UNKNOWN);
             }
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Compartment.save(this);
     }
 
     private void openAddCategoryDialog() {
@@ -81,32 +73,29 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void openAddFlashcardDialog() {
-        addFlashcardDialog = new AddFlashcardDialog(this, Compartment.categories.getArrayList());
+        addFlashcardDialog = new AddFlashcardDialog(this, Data.categories.getArrayList());
         addFlashcardDialog.show(getSupportFragmentManager(), "Adding flashcard");
     }
 
-    private void openCategoryListActivity(CompartmentType type) {
-        ChosenObjects.currentlyChosenCompartmentType = type;
+    private void openCategoryListActivity(Level type) {
+        Data.chosenLevel = type;
         Intent intent = new Intent(this, CategoryListActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void addCategory(String category) {
-        boolean result = Compartment.categories.add(category);
+        boolean result = Data.addCategory(category);
         if (result) {
-            Compartment.knownFlashcards.put(category, new ArrayList<Flashcard>());
-            Compartment.unknownFlashcards.put(category, new ArrayList<Flashcard>());
             Toast.makeText(this, "Udało się dodać kategorię!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(this, "Taka kategoria już isnieje!", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void addFlashcard(Flashcard flashcard) {
-        Compartment.unknownFlashcards.get(flashcard.getCategory()).add(flashcard);
+        Data.addFlashcard(flashcard);
         Toast.makeText(this, "Udało się dodać fiszkę!", Toast.LENGTH_SHORT).show();
     }
 }

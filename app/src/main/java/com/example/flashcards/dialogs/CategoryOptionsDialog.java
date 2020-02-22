@@ -12,9 +12,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.flashcards.R;
 import com.example.flashcards.activities.FlashcardListActivity;
-import com.example.flashcards.model.Compartment;
-import com.example.flashcards.model.CompartmentType;
-import com.example.flashcards.utils.ChosenObjects;
+import com.example.flashcards.database.Data;
+import com.example.flashcards.model.Level;
 
 public class CategoryOptionsDialog extends AppCompatDialogFragment {
 
@@ -36,8 +35,7 @@ public class CategoryOptionsDialog extends AppCompatDialogFragment {
             }
         });
 
-        if (ChosenObjects.currentlyChosenCompartmentType == CompartmentType.UNKNOWN) {
-            System.out.println("XDDDDDDDDDDDDDDD");
+        if (Data.chosenLevel == Level.UNKNOWN) {
             buttonPlay = view.findViewById(R.id.button_play);
             buttonPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
