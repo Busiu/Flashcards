@@ -17,6 +17,7 @@
         android:layout_below="@id/text_view_category_name"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:focusable="false"
         android:text="usuń"
         android:textSize="8dp" />
 

@@ -8,6 +8,6 @@
         android:id="@+id/text_view_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Na pewno chcesz usunąć tę fiszkę?" />
+        android:text="Na pewno chcesz usunąć ten obiekt?" />
 
 </RelativeLayout>
