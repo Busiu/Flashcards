@@ -36,4 +36,8 @@ public class Flashcard {
     public Phrase getPolishPhrase() {
         return polishPhrase;
     }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
 }

@@ -37,6 +37,8 @@ public class FlashcardGameActivity extends AppCompatActivity {
     private FlashcardGameType chosenFlashcardGameType;
     private String chosenCategory;
 
+    private static final String theEnd = "Wykorzystano wszystkie karty! Powróć do poprzedniego okienka!";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,39 +51,31 @@ public class FlashcardGameActivity extends AppCompatActivity {
         buttonDoNotKnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iteratorUnknownFlashcardsDeck++;
-                changeFlashcard();
+                onButtonDoNotKnowClick();
             }
         });
         buttonKnow = findViewById(R.id.button_know);
         buttonKnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unknownFlashcardsDeck.remove(currentFlashcard);
-                knownFlashcardsDeck.add(currentFlashcard);
-                Data.switchLevelOfFlashcardToDatabase(currentFlashcard);
-
-                sizeUnknownFlashcardsDeck = unknownFlashcardsDeck.size();
-                changeFlashcard();
+                onButtonKnowClick();
             }
         });
         buttonTurnOver = findViewById(R.id.button_turn_over);
         buttonTurnOver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flipCard();
+                onButtonTurnOverClick();
             }
         });
 
         textViewPhrase = findViewById(R.id.text_view_phrase);
 
-        changeFlashcard();
+        onGameStart();
     }
 
     private void changeFlashcard() {
-        if (iteratorUnknownFlashcardsDeck >= sizeUnknownFlashcardsDeck) {
-            textViewPhrase.setText("Wykorzystano wszystkie karty! Powróć do poprzedniego okienka!");
-        } else {
+        if (iteratorUnknownFlashcardsDeck < sizeUnknownFlashcardsDeck) {
             currentFlashcard = unknownFlashcardsDeck.get(iteratorUnknownFlashcardsDeck);
 
             if (chosenFlashcardGameType == FlashcardGameType.ENGLISH_TO_POLISH) {
@@ -91,6 +85,8 @@ public class FlashcardGameActivity extends AppCompatActivity {
             }
 
             textViewPhrase.setText(currentPhrase.toString());
+        } else {
+            textViewPhrase.setText(theEnd);
         }
     }
 
@@ -101,6 +97,45 @@ public class FlashcardGameActivity extends AppCompatActivity {
             currentPhrase = currentFlashcard.getEnglishPhrase();
         }
         textViewPhrase.setText(currentPhrase.toString());
+    }
+
+    private void onButtonDoNotKnowClick() {
+        if (iteratorUnknownFlashcardsDeck < sizeUnknownFlashcardsDeck) {
+            iteratorUnknownFlashcardsDeck++;
+            changeFlashcard();
+        } else {
+            textViewPhrase.setText(theEnd);
+        }
+    }
+
+    private void onButtonKnowClick() {
+        if (iteratorUnknownFlashcardsDeck < sizeUnknownFlashcardsDeck) {
+            unknownFlashcardsDeck.remove(currentFlashcard);
+            currentFlashcard.setLevel(Level.KNOWN);
+            knownFlashcardsDeck.add(currentFlashcard);
+            Data.switchLevelOfFlashcardToDatabase(currentFlashcard);
+
+            sizeUnknownFlashcardsDeck = unknownFlashcardsDeck.size();
+            changeFlashcard();
+        } else {
+            textViewPhrase.setText(theEnd);
+        }
+    }
+
+    private void onButtonTurnOverClick() {
+        if (iteratorUnknownFlashcardsDeck < sizeUnknownFlashcardsDeck) {
+            flipCard();
+        } else {
+            textViewPhrase.setText(theEnd);
+        }
+    }
+
+    private void onGameStart() {
+        if (iteratorUnknownFlashcardsDeck < sizeUnknownFlashcardsDeck) {
+            changeFlashcard();
+        } else {
+            textViewPhrase.setText(theEnd);
+        }
     }
 
     private void setChoice() {
