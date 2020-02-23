@@ -25,6 +25,7 @@ public class FlashcardsDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + CategoriesEntry.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + FlashcardsEntry.TABLE_NAME);
         onCreate(db);
     }
