@@ -9,10 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.example.flashcards.database.Data;
 import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.R;
 import com.example.flashcards.model.Language;
@@ -24,13 +26,12 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
 
     private EditText editTextEnglishPhrase;
     private EditText editTextPolishPhrase;
-    private Spinner spinnerCategory;
+    private TextView textViewCategoryName;
     private ArrayAdapter<String> arrayAdapterCategories;
     private ArrayList<String> listOfCategories;
 
     private AddFlashcardDialogListener listener;
 
-    private String chosenCategory;
 
     public AddFlashcardDialog(
             AddFlashcardDialogListener listener,
@@ -49,19 +50,8 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
         editTextEnglishPhrase = view.findViewById(R.id.edit_text_english_phrase);
         editTextPolishPhrase = view.findViewById(R.id.edit_text_polish_phrase);
 
-        spinnerCategory = view.findViewById(R.id.spinner_category);
-        spinnerCategory.setAdapter(arrayAdapterCategories);
-        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                chosenCategory = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        textViewCategoryName = view.findViewById(R.id.text_view_category_name);
+        textViewCategoryName.setText(Data.chosenCategory);
 
         builder.setView(view)
                 .setTitle("Dodaj fiszkę:")
@@ -79,7 +69,7 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
                         listener.addFlashcard(new Flashcard(
                                 new Phrase(Language.ENGLISH, englishPhrase),
                                 new Phrase(Language.POLISH, polishPhrase),
-                                chosenCategory));
+                                Data.chosenCategory));
                     }
                 });
 

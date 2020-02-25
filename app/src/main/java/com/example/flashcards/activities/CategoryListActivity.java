@@ -25,9 +25,9 @@ public class CategoryListActivity extends AppCompatActivity implements
         SimpleDeleteDialog.SimpleDeleteDialogListener,
         AddCategoryDialog.AddCategoryDialogListener {
 
+    private FloatingActionButton fabAddCategory;
     private ListView listViewCategories;
     private CategoryAdapter categoryAdapter;
-    private FloatingActionButton fabAddCategory;
 
     private AddCategoryDialog addCategoryDialog;
     private CategoryOptionsDialog categoryOptionsDialog;

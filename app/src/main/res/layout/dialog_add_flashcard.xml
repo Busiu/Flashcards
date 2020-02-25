@@ -4,17 +4,35 @@
     android:layout_height="match_parent"
     android:padding="16dp" >
 
-    <Spinner
-        android:id="@+id/spinner_category"
+    <LinearLayout
+        android:id="@+id/linear_layout_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" >
+
+        <TextView
+            android:id="@+id/text_view_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategoria:" />
+
+        <TextView
+            android:id="@+id/text_view_category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@+id/text_view_category"
+            android:layout_toRightOf="@+id/text_view_category"
+            android:text="kategoria" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/edit_text_english_phrase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_category"
+        android:layout_below="@id/linear_layout_category"
         android:hint="Angielskie wyrażenie" />
 
     <EditText
