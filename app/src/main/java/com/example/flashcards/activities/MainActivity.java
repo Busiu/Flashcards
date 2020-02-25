@@ -16,15 +16,12 @@ import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.R;
 
 public class MainActivity extends AppCompatActivity implements
-        AddCategoryDialog.AddCategoryDialogListener,
         AddFlashcardDialog.AddFlashcardDialogListener {
 
-    private Button buttonAddCategory;
     private Button buttonAddFlashcard;
     private Button buttonKnownFlashcards;
     private Button buttonUnknownFlashcards;
 
-    private AddCategoryDialog addCategoryDialog;
     private AddFlashcardDialog addFlashcardDialog;
 
     @Override
@@ -33,14 +30,6 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         Data.init(this);
         Data.load();
-
-        buttonAddCategory = findViewById(R.id.button_add_category);
-        buttonAddCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAddCategoryDialog();
-            }
-        });
 
         buttonAddFlashcard = findViewById(R.id.button_add_flashcard);
         buttonAddFlashcard.setOnClickListener(new View.OnClickListener() {
@@ -67,11 +56,6 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    private void openAddCategoryDialog() {
-        addCategoryDialog = new AddCategoryDialog(this);
-        addCategoryDialog.show(getSupportFragmentManager(), "Adding category");
-    }
-
     private void openAddFlashcardDialog() {
         addFlashcardDialog = new AddFlashcardDialog(this, Data.categories.getArrayList());
         addFlashcardDialog.show(getSupportFragmentManager(), "Adding flashcard");
@@ -81,16 +65,6 @@ public class MainActivity extends AppCompatActivity implements
         Data.chosenLevel = type;
         Intent intent = new Intent(this, CategoryListActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void addCategory(String category) {
-        boolean result = Data.addCategory(category);
-        if (result) {
-            Toast.makeText(this, "Udało się dodać kategorię!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Taka kategoria już isnieje!", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
