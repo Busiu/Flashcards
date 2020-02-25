@@ -42,6 +42,8 @@ public class CategoryListActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
+        Data.init(this);
+        Data.load();
         knownFlashcards = Data.knownFlashcards;
         unknownFlashcards = Data.unknownFlashcards;
 

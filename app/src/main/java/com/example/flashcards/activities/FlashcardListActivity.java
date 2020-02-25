@@ -20,7 +20,7 @@ public class FlashcardListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.categories_new);
+        setContentView(R.layout.activity_flashcard_list);
 
         tabLayout = findViewById(R.id.tabs);
         viewPagerLevels = findViewById(R.id.view_pager_levels);

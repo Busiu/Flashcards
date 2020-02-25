@@ -9,14 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/PatrycjaTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.CategoryListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CategoryListActivity" />
         <activity android:name=".activities.FlashcardGameActivity" />
         <activity android:name=".activities.FlashcardListActivity" />
 

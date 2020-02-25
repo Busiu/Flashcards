@@ -35,15 +35,13 @@ public class CategoryOptionsDialog extends AppCompatDialogFragment {
             }
         });
 
-        if (Data.chosenLevel == Level.UNKNOWN) {
-            buttonPlay = view.findViewById(R.id.button_play);
-            buttonPlay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openFlashcardGameOptionsDialog();
-                }
-            });
-        }
+        buttonPlay = view.findViewById(R.id.button_play);
+        buttonPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFlashcardGameOptionsDialog();
+            }
+        });
 
         builder.setView(view)
                 .setTitle("Co chcesz zrobić?");
