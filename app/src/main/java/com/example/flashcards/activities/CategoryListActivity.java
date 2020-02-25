@@ -14,7 +14,6 @@ import com.example.flashcards.database.Data;
 import com.example.flashcards.dialogs.AddCategoryDialog;
 import com.example.flashcards.dialogs.CategoryOptionsDialog;
 import com.example.flashcards.dialogs.SimpleDeleteDialog;
-import com.example.flashcards.model.Level;
 import com.example.flashcards.model.Flashcard;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,7 +32,8 @@ public class CategoryListActivity extends AppCompatActivity implements
     private CategoryOptionsDialog categoryOptionsDialog;
     private SimpleDeleteDialog simpleDeleteDialog;
 
-    private HashMap<String, ArrayList<Flashcard>> flashcards;
+    private HashMap<String, ArrayList<Flashcard>> knownFlashcards;
+    private HashMap<String, ArrayList<Flashcard>> unknownFlashcards;
 
     private static final String deleteDialogTitle = "Usuwanie kategorii:";
     private static final String deleteDialogInfo = "Czy na pewno chcesz usunąć tę kategorię?";
@@ -42,14 +42,16 @@ public class CategoryListActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
-        chooseFlashcards();
+        knownFlashcards = Data.knownFlashcards;
+        unknownFlashcards = Data.unknownFlashcards;
 
         listViewCategories = findViewById(R.id.list_view_object);
         categoryAdapter = new CategoryAdapter(
                 this,
                 R.layout.list_view_category,
                 Data.categories,
-                flashcards,
+                knownFlashcards,
+                unknownFlashcards,
                 this);
         listViewCategories.setAdapter(categoryAdapter);
         listViewCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,16 +74,6 @@ public class CategoryListActivity extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
         categoryAdapter.notifyDataSetChanged();
-    }
-
-    private void chooseFlashcards() {
-        Level type = Data.chosenLevel;
-        if (type == Level.KNOWN) {
-            flashcards = Data.knownFlashcards;
-        }
-        else {
-            flashcards = Data.unknownFlashcards;
-        }
     }
 
     private void openAddCategoryDialog() {

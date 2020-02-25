@@ -21,11 +21,54 @@
         android:text="usuń"
         android:textSize="8dp" />
 
-    <TextView
-        android:id="@+id/text_view_no_flashcards"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linear_layout_known_flashcards"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/button_delete"
-        android:text="liczba fiszek" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/text_view_known_flashcards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Znane fiszki:" />
+
+        <TextView
+            android:id="@+id/text_view_no_known_flashcards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@+id/text_view_known_flashcards"
+            android:layout_toRightOf="@+id/text_view_known_flashcards"
+            android:text="liczba fiszek" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_unknown_flashcards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_layout_known_flashcards"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/text_view_unknown_flashcards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nieznane fiszki:" />
+
+        <TextView
+            android:id="@+id/text_view_no_unknown_flashcards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@+id/text_view_unknown_flashcards"
+            android:layout_toRightOf="@+id/text_view_unknown_flashcards"
+            android:text="liczba fiszek" />
+
+    </LinearLayout>
 
 </RelativeLayout>

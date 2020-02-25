@@ -23,24 +23,28 @@ public class CategoryAdapter extends ArrayAdapter<String> {
 
     private CategoryListActivity activity;
     private NoDuplicateArrayList<String> categories;
-    private HashMap<String, ArrayList<Flashcard>> flashcards;
+    private HashMap<String, ArrayList<Flashcard>> knownFlashcards;
+    private HashMap<String, ArrayList<Flashcard>> unknownFlashcards;
 
     public CategoryAdapter(
             Context context,
             int layoutResourceId,
             NoDuplicateArrayList<String> categories,
-            HashMap<String, ArrayList<Flashcard>> flashcards,
+            HashMap<String, ArrayList<Flashcard>> knownFlashcards,
+            HashMap<String, ArrayList<Flashcard>> unknownFlashcards,
             CategoryListActivity activity) {
         super(context, layoutResourceId, categories.getArrayList());
         this.activity = activity;
         this.categories = categories;
-        this.flashcards = flashcards;
+        this.knownFlashcards = knownFlashcards;
+        this.unknownFlashcards = unknownFlashcards;
     }
 
     private class ViewHolder {
         private Button buttonDelete;
         private TextView textViewCategoryName;
-        private TextView textViewNoFlashcards;
+        private TextView textViewNoKnownFlashcards;
+        private TextView textViewNoUnknownFlashcards;
     }
 
     @NonNull
@@ -54,7 +58,8 @@ public class CategoryAdapter extends ArrayAdapter<String> {
 
             viewHolder.buttonDelete = convertView.findViewById(R.id.button_delete);
             viewHolder.textViewCategoryName = convertView.findViewById(R.id.text_view_category_name);
-            viewHolder.textViewNoFlashcards = convertView.findViewById(R.id.text_view_no_flashcards);
+            viewHolder.textViewNoKnownFlashcards = convertView.findViewById(R.id.text_view_no_known_flashcards);
+            viewHolder.textViewNoUnknownFlashcards = convertView.findViewById(R.id.text_view_no_unknown_flashcards);
             convertView.setTag(viewHolder);
         }
         else {
@@ -69,7 +74,8 @@ public class CategoryAdapter extends ArrayAdapter<String> {
             }
         });
         viewHolder.textViewCategoryName.setText(category);
-        viewHolder.textViewNoFlashcards.setText(Integer.toString(flashcards.get(category).size()));
+        viewHolder.textViewNoKnownFlashcards.setText(Integer.toString(knownFlashcards.get(category).size()));
+        viewHolder.textViewNoUnknownFlashcards.setText(Integer.toString(unknownFlashcards.get(category).size()));
 
         return convertView;
     }
