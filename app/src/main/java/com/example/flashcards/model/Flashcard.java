@@ -7,13 +7,6 @@ public class Flashcard {
     private Phrase polishPhrase;
     private String category;
 
-    public Flashcard(Phrase englishPhrase, Phrase polishPhrase, String category) {
-        this.level = Level.UNKNOWN;
-        this.category = category;
-        this.englishPhrase = englishPhrase;
-        this.polishPhrase = polishPhrase;
-    }
-
     public Flashcard(Level level, Phrase englishPhrase, Phrase polishPhrase, String category) {
         this.level = level;
         this.category = category;

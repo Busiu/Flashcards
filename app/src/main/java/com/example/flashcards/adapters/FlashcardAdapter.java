@@ -12,23 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.flashcards.R;
-import com.example.flashcards.activities.FlashcardListActivity;
+import com.example.flashcards.fragments.FlashcardListFragment;
 import com.example.flashcards.model.Flashcard;
 
 import java.util.ArrayList;
 
 public class FlashcardAdapter extends ArrayAdapter<Flashcard> {
 
-    private FlashcardListActivity activity;
+    private FlashcardListFragment fragment;
     private ArrayList<Flashcard> flashcards;
 
     public FlashcardAdapter(
             Context context,
             int layoutResourceId,
             ArrayList<Flashcard> flashcards,
-            FlashcardListActivity activity) {
+            FlashcardListFragment fragment) {
         super(context, layoutResourceId, flashcards);
-        this.activity = activity;
+        this.fragment = fragment;
         this.flashcards = flashcards;
     }
 
@@ -60,7 +60,7 @@ public class FlashcardAdapter extends ArrayAdapter<Flashcard> {
         viewHolder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.openSimpleDeleteDialog(flashcard);
+                fragment.openSimpleDeleteDialog(flashcard);
             }
         });
         viewHolder.textViewEnglishPhrase.setText(flashcard.getEnglishPhrase().toString());

@@ -18,6 +18,7 @@ import com.example.flashcards.database.Data;
 import com.example.flashcards.model.Flashcard;
 import com.example.flashcards.R;
 import com.example.flashcards.model.Language;
+import com.example.flashcards.model.Level;
 import com.example.flashcards.model.Phrase;
 
 import java.util.ArrayList;
@@ -27,17 +28,15 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
     private EditText editTextEnglishPhrase;
     private EditText editTextPolishPhrase;
     private TextView textViewCategoryName;
-    private ArrayAdapter<String> arrayAdapterCategories;
-    private ArrayList<String> listOfCategories;
 
     private AddFlashcardDialogListener listener;
 
+    private Level chosenLevel;
 
     public AddFlashcardDialog(
-            AddFlashcardDialogListener listener,
-            ArrayList<String> listOfCategories) {
+            AddFlashcardDialogListener listener, Level chosenLevel) {
         this.listener = listener;
-        this.listOfCategories = listOfCategories;
+        this.chosenLevel = chosenLevel;
     }
 
     @Override
@@ -45,7 +44,6 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_flashcard, null);
-        arrayAdapterCategories = new ArrayAdapter<>(getContext(), R.layout.spinner_simple_element, listOfCategories);
 
         editTextEnglishPhrase = view.findViewById(R.id.edit_text_english_phrase);
         editTextPolishPhrase = view.findViewById(R.id.edit_text_polish_phrase);
@@ -67,6 +65,7 @@ public class AddFlashcardDialog extends AppCompatDialogFragment {
                         String englishPhrase = editTextEnglishPhrase.getText().toString();
                         String polishPhrase = editTextPolishPhrase.getText().toString();
                         listener.addFlashcard(new Flashcard(
+                                chosenLevel,
                                 new Phrase(Language.ENGLISH, englishPhrase),
                                 new Phrase(Language.POLISH, polishPhrase),
                                 Data.chosenCategory));
